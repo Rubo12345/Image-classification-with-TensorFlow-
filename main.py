@@ -74,10 +74,34 @@ model.compile(
 # model.summary()
 
 #Traing the Model
-model.fit(x_train_norm,y_train_one_hot,epochs = 10)
+model.fit(x_train_norm,y_train_one_hot,epochs = 3)
 
 #Evaluating the model
 loss, accuracy = model.evaluate(x_test_norm,y_test_one_hot)
 print('test_set_accuracy',accuracy * 100)
 
+#Predictions
+predictions = model.predict(x_test_norm)
+print('Shape of Predictions:', predictions.shape)
 
+plt.figure(figsize = (12,12))
+start_index = 0
+for i in range(25):
+    plt.subplot(5,5,i+1)
+    plt.grid(False)
+    plt.xticks([])
+    plt.yticks([])
+    prediction = np.argmax(predictions[start_index + i])
+    ground_truth = y_test[start_index + i]
+
+    col = 'g'
+    if prediction != ground_truth:
+        col = 'r'
+
+    plt.xlabel('i= {},pred = {},ground_truth = {}'.format(start_index + i,prediction,ground_truth), color = col)
+    plt.imshow(x_test[start_index + i], cmap = 'binary')
+
+plt.show()
+
+plt.plot(predictions[4])
+plt.show()
