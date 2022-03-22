@@ -3,6 +3,8 @@ import tensorflow as tf
 from matplotlib import pyplot as plt
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
 # print('Tensorflow Version:', tf.__version__)
 
@@ -53,3 +55,29 @@ x_test_norm = (x_test_reshape - x_mean)/(x_std + epsilon)
 
 # print(x_train_norm[0])
 # print(x_test_norm[0])
+
+
+# Creating a model below
+model = Sequential([
+    Dense(128,activation='relu',input_shape = (784,)),
+    Dense(128,activation='relu'),
+    Dense(10,activation = 'softmax')
+])
+
+# Compiling the model below
+
+model.compile(
+    optimizer='sgd',
+    loss = 'categorical_crossentropy',
+    metrics = ['accuracy']
+)
+# model.summary()
+
+#Traing the Model
+model.fit(x_train_norm,y_train_one_hot,epochs = 10)
+
+#Evaluating the model
+loss, accuracy = model.evaluate(x_test_norm,y_test_one_hot)
+print('test_set_accuracy',accuracy * 100)
+
+
