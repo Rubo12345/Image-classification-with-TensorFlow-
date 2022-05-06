@@ -12,3 +12,4 @@ Steps Involved:
 9) Evaluating the model (loss , accuracy)
 10) Predictions
 11) Plotting
+
