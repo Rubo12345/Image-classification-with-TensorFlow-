@@ -1,4 +1,5 @@
-# Image-classification-with-TensorFlow-
+# Mini Project
+## Image-classification-with-TensorFlow
 Built a neural network model to solve a basic image classification problem, on MNIST dataset.
 
 Dataset: MNIST dataset
