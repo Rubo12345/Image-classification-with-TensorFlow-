@@ -34,7 +34,6 @@ x_test_reshape = np.reshape(x_test,(10000,784))    # Converting N -dimensional a
 
 # print(x_train_reshape.shape)
 # print(x_test_reshape.shape)
-
 # print(set(x_train_reshape[0]))   # pixel values
 
 '''
@@ -56,7 +55,6 @@ x_test_norm = (x_test_reshape - x_mean)/(x_std + epsilon)
 # print(x_train_norm[0])
 # print(x_test_norm[0])
 
-
 # Creating a model below
 model = Sequential([
     Dense(128,activation='relu',input_shape = (784,)),
@@ -65,7 +63,6 @@ model = Sequential([
 ])
 
 # Compiling the model below
-
 model.compile(
     optimizer='sgd',
     loss = 'categorical_crossentropy',
@@ -74,15 +71,15 @@ model.compile(
 # model.summary()
 
 #Traing the Model
-model.fit(x_train_norm,y_train_one_hot,epochs = 3)
+model.fit(x_train_norm,y_train_one_hot,epochs = 30)
 
 #Evaluating the model
 loss, accuracy = model.evaluate(x_test_norm,y_test_one_hot)
-print('test_set_accuracy',accuracy * 100)
+# print('test_set_accuracy',accuracy * 100)
 
 #Predictions
 predictions = model.predict(x_test_norm)
-print('Shape of Predictions:', predictions.shape)
+# print('Shape of Predictions:', predictions.shape)
 
 plt.figure(figsize = (12,12))
 start_index = 0
@@ -102,6 +99,5 @@ for i in range(25):
     plt.imshow(x_test[start_index + i], cmap = 'binary')
 
 plt.show()
-
 plt.plot(predictions[4])
 plt.show()
